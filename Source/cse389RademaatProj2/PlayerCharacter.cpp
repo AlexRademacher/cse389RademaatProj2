@@ -12,7 +12,7 @@ APlayerCharacter::APlayerCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	Score = 0;
+	Points = 0;
 	Health = 100;
 }
 
@@ -56,6 +56,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 	// Bind the actions
 	PEI->BindAction(InputMove, ETriggerEvent::Triggered, this, &APlayerCharacter::Move);
+	PEI->BindAction(InputJump, ETriggerEvent::Triggered, this, &APlayerCharacter::Jump);
 	PEI->BindAction(InputLook, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
 }
 
@@ -89,9 +90,21 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 			// Get right vector
 			const FVector Direction = MovementRotation.RotateVector(FVector::RightVector);
 
+			AddControllerYawInput(MoveValue.X);
 			AddMovementInput(Direction, MoveValue.X);
 		}
 	}
+}
+
+void APlayerCharacter::Jump(const FInputActionValue& Value)
+{
+	ACharacter* Character = GetWorld()->GetFirstPlayerController()->GetPawn<ACharacter>();
+
+	if (!IsValid(Character)) {
+		return;
+	}
+
+	Character->Jump();
 }
 
 void APlayerCharacter::Look(const FInputActionValue& Value)
@@ -111,13 +124,13 @@ void APlayerCharacter::Look(const FInputActionValue& Value)
 
 void APlayerCharacter::SetScore(int NewScore)
 {
-	Score = NewScore;
-	UE_LOG(LogTemp, Warning, TEXT("%d"), Score);
+	Points = NewScore;
+	UE_LOG(LogTemp, Warning, TEXT("%d"), Points);
 }
 
 int APlayerCharacter::GetScore()
 {
-	return Score;
+	return Points;
 }
 
 int APlayerCharacter::GetHealth()

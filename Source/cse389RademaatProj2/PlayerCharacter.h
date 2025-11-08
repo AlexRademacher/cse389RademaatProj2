@@ -27,13 +27,15 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* InputMove;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* InputJump;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputAction* InputLook;
 
 	// Yoinking collision component from BP of Character
 	UCapsuleComponent* CollisionComp;
 
 	// Variable to hold the score when you shoot something
-	int Score;
+	int Points;
 
 	// Score variable for Controllable Character
 	int Health;
@@ -51,6 +53,8 @@ public:
 
 	// Function that handles wasd movement
 	void Move(const FInputActionValue& Value);
+	// Function that handles space movement
+	void Jump(const FInputActionValue& Value);
 	// Function that handles mouse looking around
 	void Look(const FInputActionValue& Value);
 
