@@ -154,8 +154,6 @@ void APlayerCharacter::CountDown()
 		if (Minutes <= 0) {
 			GetWorldTimerManager().ClearTimer(TM_CountDown);
 			Seconds = 0.0f;
-
-
 			return;
 		}
 		
