@@ -77,6 +77,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int GetScore();
 
+	void Damage();
+
 	UFUNCTION(BlueprintCallable)
 	int GetHealth();
 

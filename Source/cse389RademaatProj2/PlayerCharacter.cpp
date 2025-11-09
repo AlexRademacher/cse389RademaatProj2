@@ -138,6 +138,11 @@ int APlayerCharacter::GetScore()
 	return Points;
 }
 
+void APlayerCharacter::Damage()
+{
+	Health = Health - 20;
+}
+
 int APlayerCharacter::GetHealth()
 {
 	return Health;
