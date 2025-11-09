@@ -39,6 +39,9 @@ void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (GetActorLocation().Z < -120) {
+		Health = 0;
+	}
 }
 
 // Called to bind functionality to input
