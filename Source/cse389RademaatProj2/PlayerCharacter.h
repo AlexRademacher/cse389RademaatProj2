@@ -40,6 +40,17 @@ protected:
 	// Score variable for Controllable Character
 	int Health;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = input, meta = (AllowPrivateAcess = true))
+	FTimerHandle TM_CountDown;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Count Time")
+	float Seconds;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Count Time")
+	int32 Minutes;
+
+
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -68,4 +79,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	int GetHealth();
+
+	void CountDown();
 };

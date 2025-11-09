@@ -14,6 +14,9 @@ APlayerCharacter::APlayerCharacter()
 
 	Points = 0;
 	Health = 100;
+
+	Seconds = 30.0f;
+	Minutes = 1;
 }
 
 // Called when the game starts or when spawned
@@ -27,6 +30,8 @@ void APlayerCharacter::BeginPlay()
 	{
 		CollisionComp->OnComponentHit.AddDynamic(this, &APlayerCharacter::OnHit);
 	}
+
+	GetWorldTimerManager().SetTimer(TM_CountDown, this, &APlayerCharacter::CountDown, 1.0f, true, 1.0f);
 }
 
 // Called every frame
@@ -137,4 +142,27 @@ int APlayerCharacter::GetHealth()
 {
 	return Health;
 }
+
+void APlayerCharacter::CountDown()
+{
+	if (Seconds > 0) 
+	{
+		--Seconds;
+	}
+	else
+	{
+		if (Minutes <= 0) {
+			GetWorldTimerManager().ClearTimer(TM_CountDown);
+			Seconds = 0.0f;
+
+
+			return;
+		}
+		
+		--Minutes;
+
+		Seconds = 59.0f;
+	}
+}
+
 
