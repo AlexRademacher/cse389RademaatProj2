@@ -17,19 +17,18 @@ ACollectable::ACollectable()
 
 	// Find the Tripyramid shape
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>
-		VisualAsset(TEXT("/Game/StarterContent/Shapes/Shape_QuadPyramid.Shape_QuadPyramid"));
+		VisualAsset(TEXT("/Game/Fantastic_Village_Pack/meshes/props/food/SM_PROP_food_apple.SM_PROP_food_apple"));
 
 	// If we successfully found the Tripyramid shape, set the mesh component to it
 	if (VisualAsset.Succeeded()) {
 		VisualMesh->SetStaticMesh(VisualAsset.Object);
 		VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
-		VisualMesh->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
+		VisualMesh->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	}
 
 	PlayerCollision = CreateDefaultSubobject<USphereComponent>(TEXT("Player Collision"));
 	PlayerCollision->SetupAttachment(VisualMesh, TEXT("Sphere"));
-	PlayerCollision->SetRelativeScale3D(FVector(3.f, 3.f, 3.f));
-	PlayerCollision->SetRelativeLocation(FVector(0.0f, 0.0f, 1.0f));
+	PlayerCollision->SetRelativeScale3D(FVector(.5f, .5f, .5f));
 
 	CanCollect = false;
 }
