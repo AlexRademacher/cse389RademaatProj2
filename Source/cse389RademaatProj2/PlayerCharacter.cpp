@@ -15,8 +15,8 @@ APlayerCharacter::APlayerCharacter()
 	Points = 0;
 	Health = 100;
 
-	Seconds = 30.0f;
-	Minutes = 1;
+	Seconds = 0.0f;
+	Minutes = 10;
 }
 
 // Called when the game starts or when spawned
