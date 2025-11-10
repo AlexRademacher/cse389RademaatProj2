@@ -16,7 +16,7 @@ APacingEnemy::APacingEnemy()
 
 	CanAttackPlayer = false;
 
-	StartLocation = GetActorLocation().Y;
+	StartLocation = GetActorLocation().X;
 	Direction = 1;
 }
 
@@ -39,7 +39,7 @@ void APacingEnemy::Tick(float DeltaTime)
 
 	FRotator Rot = GetActorRotation();
 
-	if (GetActorLocation().X >= StartLocation + 200) {
+	if (GetActorLocation().Y >= StartLocation + 200) {
 		//Direction = -1;
 		UE_LOG(LogTemp, Warning, TEXT("Turning back"));
 
@@ -48,7 +48,7 @@ void APacingEnemy::Tick(float DeltaTime)
 			SetActorRotation(Rot);
 		}
 	}
-	else if (GetActorLocation().X <= StartLocation - 200) {
+	else if (GetActorLocation().Y <= StartLocation - 200) {
 		//Direction = 1;
 		UE_LOG(LogTemp, Warning, TEXT("Turning forward"));
 
